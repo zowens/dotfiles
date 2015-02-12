@@ -44,3 +44,6 @@ function eclimd() {
 }
 
 $(boot2docker shellinit 2> /dev/null)
+
+# for mactex
+eval `/usr/libexec/path_helper -s`
