@@ -194,6 +194,12 @@ map <leader>pp :setlocal paste!<cr>
 " retab
 nmap <silent> <leader>rt :retab!<cr>
 
+" YCM
+let g:ycm_semantic_triggers = {
+  \ 'haskell' : ['.'],
+  \ 'rust': ['.','::'],
+  \ }
+
 " java
 au FileType java map <silent> <leader>ji :JavaImportOrganize<cr>
 au FileType java map <silent> <leader>jm :JavaImpl<cr>
@@ -237,8 +243,6 @@ au FileType haskell map <leader>gl :GhcModLint<cr>
 au FileType haskell map <Leader>gc :GhcModTypeClear<cr>
 let g:necoghc_enable_detailed_browse = 1
 autocmd FileType haskell :setlocal omnifunc=necoghc#omnifunc
-let g:ycm_semantic_triggers = {'haskell' : ['.']}
-
 
 " rust
 let g:racer_cmd = "/Users/zack/bin/racer"
