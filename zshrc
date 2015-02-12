@@ -6,14 +6,14 @@ fpath=(~/.zsh/completion $fpath)
 source $ZSH/oh-my-zsh.sh
 source $(brew --prefix nvm)/nvm.sh
 
-OPENSSLVERS=`ls /usr/local/Cellar/openssl/ | head -n 1`
+local OPENSSLVERS=`ls /usr/local/Cellar/openssl/ | head -n 1`
 export PKG_CONFIG_PATH=/usr/local/Cellar/openssl/$OPENSSLVERS/lib/pkgconfig
 #alias openssl=/usr/local/Cellar/openssl/`ls /usr/local/Cellar/openssl/ | head -n 1`/bin/openssl
 export GOPATH=$HOME
 export GOROOT=/usr/local/Cellar/go/`ls /usr/local/Cellar/go/ | head -n 1`/libexec
-export PATH=/usr/local/bin:$PATH:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.cabal/bin:$GOPATH/bin:$HOME/bin:$HOME/Dropbox/bin
-export PATH=$HOME/Library/Haskell/bin:$PATH
+export PATH=$HOME/Library/Haskell/bin:/usr/local/bin:$PATH:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.cabal/bin:$GOPATH/bin:$HOME/bin:$HOME/Dropbox/bin
 export EDITOR=vim
+export RUST_SRC_PATH="/Users/$USER/src/github.com/rust-lang/rust/src"
 
 source $HOME/.zshprompt
 
@@ -29,7 +29,6 @@ alias newuuid="uuidgen| tr '[:upper:]' '[:lower:]' | pbcopy"
 rm -f ~/yankring_history_v2.txt
 
 export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
-#export _JAVA_OPTIONS='-Xms512m -Xmx1024m -XX:ReservedCodeCacheSize=128m -XX:+CMSClassUnloadingEnabled'
 
 function brewup() {
     brew update && brew upgrade && brew cleanup
@@ -45,5 +44,3 @@ function eclimd() {
 }
 
 $(boot2docker shellinit 2> /dev/null)
-
-export RUST_SRC_PATH="/Users/$USER/src/github.com/rust-lang/rust/src"
