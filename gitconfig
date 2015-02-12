@@ -1,0 +1,54 @@
+[user]
+	name = Zack Owens
+	email = zowens2009@gmail.com
+
+[alias]
+    mkbr = checkout -b
+    r = reset
+    b = branch
+    st = stash
+    stp = stash -p
+	ci = commit
+	a = add
+    ap = add -p
+    aa = add .
+	s = status -sb
+	p = push
+	pl = pull --prune
+    plom = pull origin master
+	co = checkout
+    d = diff
+    graph  = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(cyan)<%an>%Creset' --abbrev-commit --date=relative
+    cim = commit -m 
+    cia = commit --amend
+    prune = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs git branch -d; }; f"
+    fu = reset --hard
+
+[color]
+    ui = true
+
+[push]
+    default = matching
+
+[core]
+    editor = vim
+
+[format]
+    graph = true
+
+[advice]
+    statusHints = false
+
+[url "git@github.com:"]
+    insteadOf = "gh://"
+    pushInsteadOf = "gh://"
+    pushInsteadOf = "git://github.com/"
+
+[branch]
+	autosetuprebase = always
+
+[merge]
+	tool = gvimdiff
+
+[help]
+	autocorrect = 1
