@@ -34,6 +34,8 @@ Plugin 'zowens/vim-eclim'
 Plugin 'Shougo/vimproc'
 Plugin 'eagletmt/ghcmod-vim'
 Plugin 'ujihisa/neco-ghc'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 call vundle#end()
 
 filetype plugin indent on
@@ -199,6 +201,11 @@ let g:ycm_semantic_triggers = {
   \ 'haskell' : ['.'],
   \ 'rust': ['.','::'],
   \ }
+
+" UltiSnips
+let g:UltiSnipsExpandTrigger="<c-z>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " java
 au FileType java map <silent> <leader>ji :JavaImportOrganize<cr>
