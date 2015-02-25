@@ -15,6 +15,7 @@ export PATH=$HOME/Library/Haskell/bin:/usr/local/bin:$PATH:/usr/bin:/bin:/usr/sb
 export EDITOR=vim
 export RUST_SRC_PATH="/Users/$USER/src/github.com/rust-lang/rust/src"
 
+export DEFAULT_USER=$USER
 source $HOME/.zshprompt
 
 [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
@@ -28,7 +29,7 @@ alias newuuid="uuidgen| tr '[:upper:]' '[:lower:]' | pbcopy"
 
 rm -f ~/yankring_history_v2.txt
 
-export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
 
 function brewup() {
     brew update && brew upgrade && brew cleanup
