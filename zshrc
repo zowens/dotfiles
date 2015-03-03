@@ -1,13 +1,13 @@
 ZSH=$HOME/.oh-my-zsh
-plugins=(git node cabal npm git-extras github git-flow mvn brew osx nvm scala docker sbt aws)
+plugins=(git node cabal npm git-extras github git-flow mvn brew osx nvm scala docker sbt aws gradle)
 
 fpath=(~/.zsh/completion $fpath)
 
 source $ZSH/oh-my-zsh.sh
 source $(brew --prefix nvm)/nvm.sh
 
-local OPENSSLVERS=`ls /usr/local/Cellar/openssl/ | head -n 1`
-export PKG_CONFIG_PATH=/usr/local/Cellar/openssl/$OPENSSLVERS/lib/pkgconfig
+#local OPENSSLVERS=`ls /usr/local/Cellar/openssl/ | head -n 1`
+#export PKG_CONFIG_PATH=/usr/local/Cellar/openssl/$OPENSSLVERS/lib/pkgconfig
 #alias openssl=/usr/local/Cellar/openssl/`ls /usr/local/Cellar/openssl/ | head -n 1`/bin/openssl
 export GOPATH=$HOME
 export GOROOT=/usr/local/Cellar/go/`ls /usr/local/Cellar/go/ | head -n 1`/libexec
@@ -26,6 +26,7 @@ alias p='pbpaste'
 alias gti='git'
 alias xargs='xargs -I {}'
 alias newuuid="uuidgen| tr '[:upper:]' '[:lower:]' | pbcopy"
+alias gw='./gradlew'
 
 rm -f ~/yankring_history_v2.txt
 
@@ -45,6 +46,7 @@ function eclimd() {
 }
 
 $(boot2docker shellinit 2> /dev/null)
+export DOCKER_TLS_VERIFY=0
 
 # for mactex
 eval `/usr/libexec/path_helper -s`
