@@ -94,8 +94,8 @@ endif
 " ---------------------------------------
 " Filetypes
 " ---------------------------------------
-let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', 'node_modules', 'dist', 'target', '*\.js','*\.map','*.js\.map']
-set wildignore=*.o,*~,*.hi,*.zip,*.so
+let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', 'node_modules', 'dist', 'target', 'build', 'bin', '*\.js','*\.map','*.js\.map','*.class']
+set wildignore=*.o,*~,*.hi,*.zip,*.so,*.class
 
 " turn off backup files
 set nobackup
@@ -145,7 +145,10 @@ let g:SuperTabDefaultCompletionType = "context"
 
 " ctrl-p
 let g:ctrlp_map = '<c-t>'
-let g:ctrlp_custom_ignore = '\v[\/]((\.(git|hg|svn))|node_modules|dist|target)$'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]((\.(git|hg|svn))|build|node_modules|dist|target|bin)$',
+  \ 'file': '\v\.(exe|so|dll|class|xml)$',
+  \ }
 let g:ctrlp_working_path_mode = 0
 
 " airline configuration
