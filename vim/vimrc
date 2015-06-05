@@ -94,7 +94,7 @@ endif
 " ---------------------------------------
 " Filetypes
 " ---------------------------------------
-let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', 'node_modules', 'dist', 'target', 'build', 'bin', '*\.js','*\.map','*.js\.map','*.class']
+let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', 'node_modules', 'dist', 'target', 'build/', 'bin', '*\.js','*\.map','*.js\.map','*.class']
 set wildignore=*.o,*~,*.hi,*.zip,*.so,*.class
 
 " turn off backup files
@@ -222,6 +222,10 @@ au FileType java map <silent> <leader>jg :JavaGetSet<cr>
 "autocmd FileType java setlocal omnifunc=eclim#complete
 let g:EclimBrowser = 'open'
 let g:EclimCompletionMethod = 'omnifunc'
+
+" scala 
+au FileType scala map <silent> <leader>ji :ScalaImport<cr>
+au FileType scala map <silent> <leader>js :ScalaSearch<cr>
 
 autocmd FileType java :set fmr=/**,*/ fdm=marker fdc=1
 autocmd FileType javascript :set fmr=/*,*/ fdm=marker fdc=1

@@ -30,14 +30,19 @@ alias gw='./gradlew'
 
 rm -f ~/yankring_history_v2.txt
 
-export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
+function setjava() {
+    vers=$1
+    export JAVA_HOME=`/usr/libexec/java_home -v $vers`
+}
+setjava 1.7
+
 
 function brewup() {
-    brew update && brew upgrade && brew cleanup
+    brew update && brew upgrade --all && brew cleanup
 }
 
 function psrid() {
-    ps aux | grep $1 | awk '{print $2}' | xargs kill -9 {}
+    psgrep -n $1 | awk '{ print $2 }' | xargs sudo kill -9 {}
 }
 
 function eclimd() {
@@ -50,3 +55,9 @@ export DOCKER_TLS_VERIFY=0
 
 # for mactex
 eval `/usr/libexec/path_helper -s`
+
+export GROOVY_HOME=/usr/local/opt/groovy/libexec
+
+# oracle
+source /usr/local/share/instantclient/instantclient.sh
+alias sqlplus='rlwrap sqlplus'
