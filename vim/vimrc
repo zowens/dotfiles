@@ -76,7 +76,7 @@ endif
 set guifont=Inconsolata\ for\ Powerline:h16
 let g:Powerline_symbols="fancy"
 
-set listchars=tab:▸\ ,eol:¬
+set listchars=eol:↲,tab:▶▹,nbsp:␣,extends:…,trail:•
 
 " exclusively use VIM settings (not VI settings)
 set laststatus=2
@@ -255,12 +255,12 @@ let g:necoghc_enable_detailed_browse = 1
 autocmd FileType haskell :setlocal omnifunc=necoghc#omnifunc
 
 " rust
-let g:racer_cmd = "/Users/zowens/bin/racer"
-
 if $USER == 'zowens'
     let $RUST_SRC_PATH="/Users/zowens/src/github.com/rust-lang/rust/src/"
+    let g:racer_cmd = "/Users/zowens/bin/racer"
 else
     let $RUST_SRC_PATH="/Users/zack/src/github.com/rust-lang/rust/src/"
+    let g:racer_cmd = "/Users/zack/bin/racer"
 endif
 
 let g:racer_experimental_completer = 1
