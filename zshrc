@@ -1,9 +1,56 @@
-ZSH=$HOME/.oh-my-zsh
-plugins=(git node cabal npm git-extras github git-flow mvn brew osx nvm scala docker sbt aws gradle)
+# ZSH=$HOME/.oh-my-zsh
+source "${HOME}/src/github.com/zowens/dotfiles/zgen.zsh"
 
-fpath=(~/.zsh/completion $fpath)
+# check if there's no init script
+if ! zgen saved; then
+    echo "Creating a zgen save"
 
-source $ZSH/oh-my-zsh.sh
+    zgen oh-my-zsh
+
+    # plugins
+    zgen oh-my-zsh plugins/git
+    zgen oh-my-zsh plugins/node
+    zgen oh-my-zsh plugins/cabal
+    zgen oh-my-zsh plugins/npm
+    zgen oh-my-zsh plugins/git-extras
+    zgen oh-my-zsh plugins/github
+    zgen oh-my-zsh plugins/git-flow
+    zgen oh-my-zsh plugins/mvn
+    zgen oh-my-zsh plugins/brew
+    zgen oh-my-zsh plugins/osx
+    zgen oh-my-zsh plugins/nvm
+    zgen oh-my-zsh plugins/scala
+    zgen oh-my-zsh plugins/docker
+    zgen oh-my-zsh plugins/boot2docker
+    zgen oh-my-zsh plugins/sbt
+    zgen oh-my-zsh plugins/aws
+    zgen oh-my-zsh plugins/gradle
+    zgen oh-my-zsh plugins/sudo
+    zgen load zsh-users/zsh-syntax-highlighting
+
+    # completions
+    zgen load zsh-users/zsh-completions src
+
+    # theme
+    # zgen oh-my-zsh themes/arrow
+
+    zgen load jimmijj/zsh-syntax-highlighting
+
+    # autosuggestions should be loaded last
+    zgen load tarruda/zsh-autosuggestions
+
+    # save all to init script
+    zgen save
+fi
+
+## Enable autosuggestions automatically.
+zle-line-init() {
+    zle autosuggest-start
+}
+zle -N zle-line-init
+bindkey '^R' autosuggest-execute-suggestion
+
+#source $ZSH/oh-my-zsh.sh
 source $(brew --prefix nvm)/nvm.sh
 
 #local OPENSSLVERS=`ls /usr/local/Cellar/openssl/ | head -n 1`
@@ -61,3 +108,15 @@ export GROOVY_HOME=/usr/local/opt/groovy/libexec
 # oracle
 source /usr/local/share/instantclient/instantclient.sh
 alias sqlplus='rlwrap sqlplus'
+
+# vim mode
+# bindkey -v
+# export KEYTIMEOUT=1
+# function zle-line-init zle-keymap-select {
+#     RPS1="${${KEYMAP/vicmd/N}/(main|viins)/I}"
+#     RPS2=$RPS1
+#     zle reset-prompt
+# }
+# 
+# zle -N zle-line-init
+# zle -N zle-keymap-select
