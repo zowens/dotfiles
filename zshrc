@@ -109,14 +109,4 @@ export GROOVY_HOME=/usr/local/opt/groovy/libexec
 source /usr/local/share/instantclient/instantclient.sh
 alias sqlplus='rlwrap sqlplus'
 
-# vim mode
-# bindkey -v
-# export KEYTIMEOUT=1
-# function zle-line-init zle-keymap-select {
-#     RPS1="${${KEYMAP/vicmd/N}/(main|viins)/I}"
-#     RPS2=$RPS1
-#     zle reset-prompt
-# }
-# 
-# zle -N zle-line-init
-# zle -N zle-keymap-select
+GRADLE_OPTS="-Dorg.gradle.daemon=false"
