@@ -36,6 +36,7 @@ Plugin 'eagletmt/ghcmod-vim'
 Plugin 'ujihisa/neco-ghc'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
+Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
 call vundle#end()
 
 filetype plugin indent on
