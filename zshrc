@@ -106,7 +106,9 @@ eval `/usr/libexec/path_helper -s`
 export GROOVY_HOME=/usr/local/opt/groovy/libexec
 
 # oracle
-source /usr/local/share/instantclient/instantclient.sh
-alias sqlplus='rlwrap sqlplus'
+if [ -f /usr/local/share/instantclient/instantclient.sh ] ; then
+    source /usr/local/share/instantclient/instantclient.sh
+    alias sqlplus='rlwrap sqlplus'
+fi
 
 GRADLE_OPTS="-Dorg.gradle.daemon=false"
