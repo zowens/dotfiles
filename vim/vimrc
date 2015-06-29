@@ -37,6 +37,7 @@ Plugin 'ujihisa/neco-ghc'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
+Plugin 'vim-scripts/zoom.vim'
 call vundle#end()
 
 filetype plugin indent on
