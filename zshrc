@@ -21,7 +21,6 @@ if ! zgen saved; then
     zgen oh-my-zsh plugins/nvm
     zgen oh-my-zsh plugins/scala
     zgen oh-my-zsh plugins/docker
-    zgen oh-my-zsh plugins/boot2docker
     zgen oh-my-zsh plugins/sbt
     zgen oh-my-zsh plugins/aws
     zgen oh-my-zsh plugins/gradle
@@ -97,7 +96,7 @@ function eclimd() {
     nohup /Applications/eclipse/eclimd &
 }
 
-$(boot2docker shellinit 2> /dev/null)
+eval "$(docker-machine env dev 2> /dev/null)"
 export DOCKER_TLS_VERIFY=0
 
 # for mactex
@@ -106,7 +105,9 @@ eval `/usr/libexec/path_helper -s`
 export GROOVY_HOME=/usr/local/opt/groovy/libexec
 
 # oracle
-source /usr/local/share/instantclient/instantclient.sh
-alias sqlplus='rlwrap sqlplus'
+if [ -f /usr/local/share/instantclient/instantclient.sh ] ; then
+    source /usr/local/share/instantclient/instantclient.sh
+    alias sqlplus='rlwrap sqlplus'
+fi
 
 GRADLE_OPTS="-Dorg.gradle.daemon=false"
