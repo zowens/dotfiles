@@ -78,7 +78,10 @@ function setjava() {
     vers=$1
     export JAVA_HOME=`/usr/libexec/java_home -v $vers`
 }
-setjava 1.7
+
+# set to lowest installed java by default
+export LOWEST_JAVA=`ls /Library/Java/JavaVirtualMachines/ | head | sed 's/^jdk\(1\.[0-9]*\).*$/\1/'`
+setjava $LOWEST_JAVA
 
 function update() {
     echo "$BACKGROUND_RED      Homebrew      $RESET_FORMATTING" && 
