@@ -1,4 +1,3 @@
-# ZSH=$HOME/.oh-my-zsh
 source "${HOME}/src/github.com/zowens/dotfiles/zgen.zsh"
 
 # check if there's no init script
@@ -49,12 +48,8 @@ zle-line-init() {
 zle -N zle-line-init
 bindkey '^R' autosuggest-execute-suggestion
 
-#source $ZSH/oh-my-zsh.sh
 source $(brew --prefix nvm)/nvm.sh
 
-#local OPENSSLVERS=`ls /usr/local/Cellar/openssl/ | head -n 1`
-#export PKG_CONFIG_PATH=/usr/local/Cellar/openssl/$OPENSSLVERS/lib/pkgconfig
-#alias openssl=/usr/local/Cellar/openssl/`ls /usr/local/Cellar/openssl/ | head -n 1`/bin/openssl
 export GOPATH=$HOME
 export GOROOT=/usr/local/Cellar/go/`ls /usr/local/Cellar/go/ | head -n 1`/libexec
 export PATH=$HOME/Library/Haskell/bin:/usr/local/bin:$PATH:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.cabal/bin:$GOPATH/bin:$HOME/bin:$HOME/Dropbox/bin
@@ -72,7 +67,10 @@ alias p='pbpaste'
 alias gti='git'
 alias xargs='xargs -I {}'
 alias newuuid="uuidgen| tr '[:upper:]' '[:lower:]' | pbcopy"
+
+# gradle
 alias gw='./gradlew'
+GRADLE_OPTS="-Dorg.gradle.daemon=false"
 
 rm -f ~/yankring_history_v2.txt
 
@@ -85,9 +83,15 @@ function setjava() {
 export LOWEST_JAVA=`ls /Library/Java/JavaVirtualMachines/ | head | sed 's/^jdk\(1\.[0-9]*\).*$/\1/'`
 setjava $LOWEST_JAVA
 
-
 function brewup() {
     brew update && brew upgrade --all && brew cleanup
+}
+
+function update() {
+    echo "$BACKGROUND_RED      Homebrew      $RESET_FORMATTING" && 
+    brewup &&
+    echo "$BACKGROUND_RED        ZGEN        $RESET_FORMATTING" && 
+    zgen update
 }
 
 function psrid() {
@@ -99,6 +103,7 @@ function eclimd() {
     nohup /Applications/eclipse/eclimd &
 }
 
+# Docker
 eval "$(docker-machine env dev 2> /dev/null)"
 export DOCKER_TLS_VERIFY=0
 
@@ -107,10 +112,9 @@ eval `/usr/libexec/path_helper -s`
 
 export GROOVY_HOME=/usr/local/opt/groovy/libexec
 
-# oracle
+# Oracle
 if [ -f /usr/local/share/instantclient/instantclient.sh ] ; then
     source /usr/local/share/instantclient/instantclient.sh
     alias sqlplus='rlwrap sqlplus'
 fi
 
-GRADLE_OPTS="-Dorg.gradle.daemon=false"
