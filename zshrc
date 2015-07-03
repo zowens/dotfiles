@@ -80,16 +80,13 @@ function setjava() {
 }
 setjava 1.7
 
-function brewup() {
-    brew update && brew upgrade --all && brew cleanup
-}
-
 function update() {
     echo "$BACKGROUND_RED      Homebrew      $RESET_FORMATTING" && 
-    brewup &&
+    brew update && brew upgrade --all && brew cleanup
     echo "$BACKGROUND_RED        ZGEN        $RESET_FORMATTING" && 
     zgen update
 }
+alias brewup='update'
 
 function psrid() {
     psgrep -n $1 | awk '{ print $2 }' | xargs sudo kill -9 {}
