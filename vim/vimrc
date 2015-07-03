@@ -96,8 +96,8 @@ endif
 " ---------------------------------------
 " Filetypes
 " ---------------------------------------
-let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', 'node_modules', 'dist', 'target', 'build/', 'bin', '*\.js','*\.map','*.js\.map','*.class']
-set wildignore=*.o,*~,*.hi,*.zip,*.so,*.class
+let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', 'node_modules', 'dist', 'target', 'build/', 'bin', '\.js','\.map','.js\.map','\.class','\.racertmp']
+set wildignore=*.o,*~,*.hi,*.zip,*.so,*.class,*.racertmp
 
 " turn off backup files
 set nobackup
