@@ -80,7 +80,7 @@ function setjava() {
 }
 
 # set to lowest installed java by default
-export LOWEST_JAVA=`ls /Library/Java/JavaVirtualMachines/ | head | sed 's/^jdk\(1\.[0-9]*\).*$/\1/'`
+export LOWEST_JAVA=`ls /Library/Java/JavaVirtualMachines/ | head -n 1 | sed 's/^jdk\(1\.[0-9]*\).*$/\1/'`
 setjava $LOWEST_JAVA
 
 function update() {
