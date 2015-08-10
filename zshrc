@@ -55,6 +55,7 @@ export GOROOT=/usr/local/Cellar/go/`ls /usr/local/Cellar/go/ | head -n 1`/libexe
 export PATH=$HOME/Library/Haskell/bin:/usr/local/bin:$PATH:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.cabal/bin:$GOPATH/bin:$HOME/bin:$HOME/Dropbox/bin
 export EDITOR=vim
 export RUST_SRC_PATH="/Users/$USER/src/github.com/rust-lang/rust/src"
+export LD_LIBRARY_PATH=/usr/local/cuda/lib:$LD_LIBRARY_PATH
 
 export DEFAULT_USER=$USER
 source $HOME/.zshprompt
