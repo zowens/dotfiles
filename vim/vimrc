@@ -38,6 +38,7 @@ Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
 Plugin 'vim-scripts/zoom.vim'
+Plugin 'ntpeters/vim-better-whitespace'
 call vundle#end()
 
 filetype plugin indent on
@@ -167,7 +168,7 @@ nnoremap <silent> <F2> :call NumberToggle()<cr>
 " mapping for Gundo
 nnoremap <silent> <F5> :GundoToggle<CR>
 " remove trailing whitespace with F7
-nmap <silent> <F7> :%s/\s\+$//e<cr>
+nmap <silent> <F7> :StripWhitespace<cr>
 " tagbar toggle with F8
 nmap <silent> <F8> :TagbarToggle<CR>
 " command mapping from nt to NERDTree
@@ -225,7 +226,7 @@ au FileType java map <silent> <leader>jg :JavaGetSet<cr>
 let g:EclimBrowser = 'open'
 let g:EclimCompletionMethod = 'omnifunc'
 
-" scala 
+" scala
 au FileType scala map <silent> <leader>ji :ScalaImport<cr>
 au FileType scala map <silent> <leader>js :ScalaSearch<cr>
 
