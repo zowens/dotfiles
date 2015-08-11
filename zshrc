@@ -55,6 +55,8 @@ export GOROOT=/usr/local/Cellar/go/`ls /usr/local/Cellar/go/ | head -n 1`/libexe
 export PATH=/usr/local/bin:$PATH:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.cabal/bin:$GOPATH/bin:$HOME/bin:$HOME/Dropbox/bin
 export EDITOR=vim
 export RUST_SRC_PATH="/Users/$USER/src/github.com/rust-lang/rust/src"
+export LD_LIBRARY_PATH=/usr/local/cuda/lib:$LD_LIBRARY_PATH
+
 export DEFAULT_USER=$USER
 source $HOME/.zshprompt
 
@@ -85,7 +87,7 @@ function setjava() {
 }
 
 # set to lowest installed java by default
-export LOWEST_JAVA=`ls /Library/Java/JavaVirtualMachines/ | head | sed 's/^jdk\(1\.[0-9]*\).*$/\1/'`
+export LOWEST_JAVA=`ls /Library/Java/JavaVirtualMachines/ | head -n 1 | sed 's/^jdk\(1\.[0-9]*\).*$/\1/'`
 setjava $LOWEST_JAVA
 
 function update() {
