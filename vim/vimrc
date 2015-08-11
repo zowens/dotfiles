@@ -233,8 +233,7 @@ autocmd FileType java :set fmr=/**,*/ fdm=marker fdc=1
 autocmd FileType javascript :set fmr=/*,*/ fdm=marker fdc=1
 autocmd FileType cpp :set fmr=/**,*/ fdm=marker fdc=1
 autocmd FileType c :set fmr=/**,*/ fdm=marker fdc=1
-autocmd Syntax go normal zR
-autocmd Syntax scala normal zR
+set foldlevelstart=20
 
 " go
 au FileType go nmap <Leader>i <Plug>(go-info)
