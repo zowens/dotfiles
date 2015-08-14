@@ -39,6 +39,8 @@ Plugin 'honza/vim-snippets'
 Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
 Plugin 'vim-scripts/zoom.vim'
 Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'elubow/cql-vim'
+Plugin 'rking/ag.vim'
 call vundle#end()
 
 filetype plugin indent on
@@ -158,6 +160,9 @@ let g:ctrlp_working_path_mode = 0
 "let g:airline_enable_syntastic=1
 let g:airline_powerline_fonts = 1
 
+" configure ag.vim to always start searching from your project root instead of the cwd
+let g:ag_working_path_mode="r"
+
 " ---------------------------------------
 "  Key mappings / Language-Specific Items
 " ---------------------------------------
@@ -207,6 +212,9 @@ let g:ycm_semantic_triggers = {
   \ 'haskell' : ['.'],
   \ 'rust': ['.','::'],
   \ }
+
+" Strip whitespace on save
+autocmd FileType java,scala,javascript,c,cpp,rust,go,haskell,scheme,cql autocmd BufWritePre <buffer> StripWhitespace
 
 " UltiSnips
 let g:UltiSnipsExpandTrigger="<c-z>"
@@ -270,6 +278,9 @@ else
 endif
 
 let g:racer_experimental_completer = 1
+
+" CQL
+autocmd BufRead *.cql set syntax=cql
 
 " markdown
 " Add support for markdown files in tagbar.
