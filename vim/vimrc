@@ -41,6 +41,9 @@ Plugin 'vim-scripts/zoom.vim'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'elubow/cql-vim'
 Plugin 'rking/ag.vim'
+Plugin 'chrisbra/unicode.vim'
+Plugin 'oplatek/Conque-Shell'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 call vundle#end()
 
 filetype plugin indent on
@@ -298,3 +301,15 @@ let g:tagbar_type_markdown = {
     \ },
     \ 'sort': 0,
 \ }
+
+let g:NERDTreeIndicatorMap = {
+                \ "Modified"  : "✹ ",
+                \ "Staged"    : "✚ ",
+                \ "Untracked" : "✭ ",
+                \ "Renamed"   : "➜ ",
+                \ "Unmerged"  : "═ ",
+                \ "Deleted"   : "✖ ",
+                \ "Dirty"     : "✹ ",
+                \ "Clean"     : "✹ ",
+                \ "Unknown"   : "?"
+                \ }

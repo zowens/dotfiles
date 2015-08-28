@@ -122,3 +122,6 @@ if [ -f /usr/local/share/instantclient/instantclient.sh ] ; then
     alias sqlplus='rlwrap sqlplus'
 fi
 
+if [ -f $HOME/.this_zshrc ] ; then
+    source $HOME/.this_zshrc
+fi
