@@ -44,6 +44,7 @@ Plugin 'rking/ag.vim'
 Plugin 'chrisbra/unicode.vim'
 Plugin 'oplatek/Conque-Shell'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'ko2ic/nerdtree-plugin-ag'
 call vundle#end()
 
 filetype plugin indent on
@@ -217,7 +218,7 @@ let g:ycm_semantic_triggers = {
   \ }
 
 " Strip whitespace on save
-autocmd FileType java,scala,javascript,c,cpp,rust,go,haskell,scheme,cql autocmd BufWritePre <buffer> StripWhitespace
+autocmd FileType java,scala,groovy,javascript,c,cpp,rust,go,haskell,scheme,cql autocmd BufWritePre <buffer> StripWhitespace
 
 " UltiSnips
 let g:UltiSnipsExpandTrigger="<c-z>"
