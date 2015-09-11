@@ -52,19 +52,13 @@ source $(brew --prefix nvm)/nvm.sh
 
 export GOPATH=$HOME
 export GOROOT=/usr/local/Cellar/go/`ls /usr/local/Cellar/go/ | head -n 1`/libexec
-export PATH=/usr/local/bin:$PATH:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.cabal/bin:$GOPATH/bin:$HOME/bin:$HOME/Dropbox/bin
+export PATH=$HOME/Library/Haskell/bin:$HOME/.local/bin:/usr/local/bin:$PATH:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.cabal/bin:$GOPATH/bin:$HOME/bin:$HOME/Dropbox/bin
 export EDITOR=vim
 export RUST_SRC_PATH="/Users/$USER/src/github.com/rust-lang/rust/src"
 export LD_LIBRARY_PATH=/usr/local/cuda/lib:$LD_LIBRARY_PATH
 
 export DEFAULT_USER=$USER
 source $HOME/.zshprompt
-
-# Add GHC 7.10.1 to the PATH, via https://ghcformacosx.github.io/
-export GHC_DOT_APP="/opt/homebrew-cask/Caskroom/ghc/7.10.1-r0/ghc-7.10.1.app"
-if [ -d "$GHC_DOT_APP" ]; then
-  export PATH="$HOME/.cabal/bin:$HOME/Library/Haskell/bin:${GHC_DOT_APP}/Contents/bin:${PATH}"
-fi
 
 [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 
