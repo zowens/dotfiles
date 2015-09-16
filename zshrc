@@ -29,9 +29,6 @@ if ! zgen saved; then
     # completions
     zgen load zsh-users/zsh-completions src
 
-    # theme
-    # zgen oh-my-zsh themes/arrow
-
     zgen load jimmijj/zsh-syntax-highlighting
 
     # autosuggestions should be loaded last
@@ -71,7 +68,7 @@ alias newuuid="uuidgen| tr '[:upper:]' '[:lower:]' | pbcopy"
 
 # gradle
 alias gw='./gradlew'
-GRADLE_OPTS="-Dorg.gradle.daemon=false"
+export GROOVY_HOME=/usr/local/opt/groovy/libexec
 
 rm -f ~/yankring_history_v2.txt
 
@@ -89,16 +86,15 @@ function update() {
     brew update && brew upgrade --all && brew cleanup
     echo "$BACKGROUND_RED        ZGEN        $RESET_FORMATTING" && 
     zgen update
+    echo "$BACKGROUND_RED        CABAL       $RESET_FORMATTING" && 
+    (which cabal && cabal update && cabal install cabal-install)
+    echo "$BACKGROUND_RED        VIM         $RESET_FORMATTING" && 
+    (vim -c ":PluginUpdate" -c ":q" -c ":q")
 }
 alias brewup='update'
 
 function psrid() {
     psgrep -n $1 | awk '{ print $2 }' | xargs sudo kill -9 {}
-}
-
-function eclimd() {
-    psrid eclimd 2> /dev/null
-    nohup /Applications/eclipse/eclimd &
 }
 
 # Docker
@@ -107,14 +103,6 @@ export DOCKER_TLS_VERIFY=0
 
 # for mactex
 eval `/usr/libexec/path_helper -s`
-
-export GROOVY_HOME=/usr/local/opt/groovy/libexec
-
-# Oracle
-if [ -f /usr/local/share/instantclient/instantclient.sh ] ; then
-    source /usr/local/share/instantclient/instantclient.sh
-    alias sqlplus='rlwrap sqlplus'
-fi
 
 if [ -f $HOME/.this_zshrc ] ; then
     source $HOME/.this_zshrc
