@@ -88,9 +88,12 @@ function update() {
     zgen update
     echo "$BACKGROUND_RED        CABAL       $RESET_FORMATTING" && 
     (which cabal && cabal update && cabal install cabal-install)
+    echo "$BACKGROUND_RED       AWS-CLI      $RESET_FORMATTING" && 
+    (which aws && sudo pip3 install awscli --upgrade) &&
     echo "$BACKGROUND_RED        VIM         $RESET_FORMATTING" && 
-    (vim -c ":PluginUpdate" -c ":q" -c ":q")
+    (vim -c ":PluginUpdate" -c ":q" -c ":q") &&
     (which rustup && echo "$BACKGROUND_RED        RUST        $RESET_FORMATTING" && rustup)
+
 }
 alias brewup='update'
 
