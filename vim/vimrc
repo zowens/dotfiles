@@ -10,7 +10,13 @@ call vundle#begin()
 
 " let vundle manage vundle
 Plugin 'gmarik/Vundle.vim'
+
+" Nerdtree
 Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'ko2ic/nerdtree-plugin-ag'
+
+" Supporting cast
 Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'sjl/gundo.vim'
 Plugin 'majutsushi/tagbar'
@@ -21,30 +27,44 @@ Plugin 'tpope/vim-repeat'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'bling/vim-airline'
-Plugin 'fatih/vim-go'
-Plugin 'avakhov/vim-yaml'
-Plugin 'rust-lang/rust.vim'
-Plugin 'derekwyatt/vim-scala'
 Plugin 'EinfachToll/DidYouMean'
-Plugin 'abra/vim-abra'
-Plugin 'phildawes/racer'
-Plugin 'airblade/vim-gitgutter'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'zowens/vim-eclim'
+Plugin 'abra/vim-abra'
+Plugin 'airblade/vim-gitgutter'
 Plugin 'Shougo/vimproc'
-Plugin 'eagletmt/ghcmod-vim'
-Plugin 'ujihisa/neco-ghc'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
 Plugin 'vim-scripts/zoom.vim'
 Plugin 'ntpeters/vim-better-whitespace'
-Plugin 'elubow/cql-vim'
 Plugin 'rking/ag.vim'
 Plugin 'chrisbra/unicode.vim'
 Plugin 'oplatek/Conque-Shell'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'ko2ic/nerdtree-plugin-ag'
+
+" Obscure Syntax
+Plugin 'elubow/cql-vim'
+Plugin 'avakhov/vim-yaml'
+
+" Go
+Plugin 'fatih/vim-go'
+
+" Rust
+Plugin 'rust-lang/rust.vim'
+Plugin 'phildawes/racer'
+
+" Scala/Java
+Plugin 'derekwyatt/vim-scala'
+Plugin 'zowens/vim-eclim'
+
+" Snippets
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
+
+" Haskell
+Plugin 'eagletmt/ghcmod-vim'
+Plugin 'enomsg/vim-haskellConcealPlus'
+Plugin 'neovimhaskell/haskell-vim'
+Plugin 'eagletmt/neco-ghc'
+Plugin 'Twinside/vim-hoogle'
+
 call vundle#end()
 
 filetype plugin indent on
@@ -271,6 +291,10 @@ au FileType haskell map <leader>gl :GhcModLint<cr>
 au FileType haskell map <Leader>gc :GhcModTypeClear<cr>
 let g:necoghc_enable_detailed_browse = 1
 autocmd FileType haskell :setlocal omnifunc=necoghc#omnifunc
+" https://github.com/begriffs/haskell-vim-now/blob/master/.vimrc
+let g:haskell_conceal_wide = 1
+let g:haskell_conceal_enumerations = 1
+let hscoptions="𝐒𝐓𝐄𝐌xRtB𝔻w"
 
 " rust
 if $USER == 'zowens'
