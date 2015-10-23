@@ -102,7 +102,9 @@ set background=dark
 if $TERM == "xterm"
     set t_Co=256
 endif
-set guifont=Inconsolata\ for\ Powerline:h16
+
+" https://github.com/powerline/fonts/tree/master/DejaVuSansMono
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h14
 let g:Powerline_symbols="fancy"
 
 set listchars=eol:↲,tab:▶▹,nbsp:␣,extends:…,trail:•
@@ -328,13 +330,13 @@ let g:tagbar_type_markdown = {
 \ }
 
 let g:NERDTreeIndicatorMap = {
-                \ "Modified"  : "✹ ",
-                \ "Staged"    : "✚ ",
-                \ "Untracked" : "✭ ",
-                \ "Renamed"   : "➜ ",
-                \ "Unmerged"  : "═ ",
-                \ "Deleted"   : "✖ ",
-                \ "Dirty"     : "✹ ",
-                \ "Clean"     : "✹ ",
+                \ "Modified"  : "✹",
+                \ "Staged"    : "✚",
+                \ "Untracked" : "✭",
+                \ "Renamed"   : "➜",
+                \ "Unmerged"  : "═",
+                \ "Deleted"   : "✖",
+                \ "Dirty"     : "✹",
+                \ "Clean"     : "✹",
                 \ "Unknown"   : "?"
                 \ }
