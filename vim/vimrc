@@ -41,6 +41,7 @@ Plugin 'oplatek/Conque-Shell'
 " Obscure Syntax
 Plugin 'elubow/cql-vim'
 Plugin 'avakhov/vim-yaml'
+Plugin 'solarnz/thrift.vim'
 
 " Go
 Plugin 'fatih/vim-go'
