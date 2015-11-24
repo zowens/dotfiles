@@ -65,6 +65,7 @@ Plugin 'enomsg/vim-haskellConcealPlus'
 Plugin 'neovimhaskell/haskell-vim'
 Plugin 'eagletmt/neco-ghc'
 Plugin 'Twinside/vim-hoogle'
+Plugin 'mpickering/hlint-refactor-vim'
 
 call vundle#end()
 
