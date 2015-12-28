@@ -87,9 +87,8 @@ function update() {
     echo "$BACKGROUND_RED        ZGEN        $RESET_FORMATTING" && 
     zgen update
     echo "$BACKGROUND_RED        CABAL       $RESET_FORMATTING" && 
-    (which cabal && cabal update && cabal install cabal-install)
-    echo "$BACKGROUND_RED       AWS-CLI      $RESET_FORMATTING" && 
-    (which aws && sudo pip3 install awscli --upgrade) &&
+    ((which cabal && cabal update && cabal install cabal-install) || true) &&
+    ((which aws && echo "$BACKGROUND_RED       AWS-CLI      $RESET_FORMATTING" && sudo pip3 install awscli --upgrade) || true) &&
     echo "$BACKGROUND_RED        VIM         $RESET_FORMATTING" && 
     (vim -c ":PluginUpdate" -c ":q" -c ":q") &&
     (which rustup && echo "$BACKGROUND_RED        RUST        $RESET_FORMATTING" && rustup)

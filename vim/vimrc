@@ -48,7 +48,7 @@ Plugin 'fatih/vim-go'
 
 " Rust
 Plugin 'rust-lang/rust.vim'
-Plugin 'phildawes/racer'
+Plugin 'racer-rust/vim-racer'
 
 " Scala/Java
 Plugin 'derekwyatt/vim-scala'
@@ -108,7 +108,13 @@ endif
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h14
 let g:Powerline_symbols="fancy"
 
-set listchars=eol:↲,tab:▶▹,nbsp:␣,extends:…,trail:•
+set listchars=
+set listchars+=tab:·\
+set listchars+=eol:↲
+set listchars+=trail:•
+set listchars+=extends:…
+set listchars+=precedes:«
+set listchars+=nbsp:␣
 
 " exclusively use VIM settings (not VI settings)
 set laststatus=2
