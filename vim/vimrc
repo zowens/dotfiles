@@ -96,7 +96,7 @@ set encoding=utf-8
 
 " Colors/Fonts
 try
-    colorscheme abra
+    colorscheme gotham
 catch /^Vim\%((\a\+)\)\=:E185/
 endtry
 
