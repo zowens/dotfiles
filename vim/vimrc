@@ -309,9 +309,11 @@ let hscoptions="𝐒𝐓𝐄𝐌xRtB𝔻w"
 " rust
 if $USER == 'zowens'
     let $RUST_SRC_PATH="/Users/zowens/src/github.com/rust-lang/rust/src/"
+    let g:ycm_rust_src_path = '/Users/zowens/src/github.com/rust-lang/rust/src/'
     let g:racer_cmd = "/Users/zowens/bin/racer"
 else
     let $RUST_SRC_PATH="/Users/zack/src/github.com/rust-lang/rust/src/"
+    let g:ycm_rust_src_path = '/Users/zack/src/github.com/rust-lang/rust/src/'
     let g:racer_cmd = "/Users/zack/bin/racer"
 endif
 
