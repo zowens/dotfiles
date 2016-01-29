@@ -1,3 +1,5 @@
+DISABLE_UPDATE_PROMPT=true
+DISABLE_AUTO_UPDATE=true
 source "${HOME}/src/github.com/zowens/dotfiles/zgen.zsh"
 
 # check if there's no init script
@@ -7,17 +9,15 @@ if ! zgen saved; then
     zgen oh-my-zsh
 
     # plugins
-    zgen oh-my-zsh plugins/git
     zgen oh-my-zsh plugins/node
     zgen oh-my-zsh plugins/cabal
     zgen oh-my-zsh plugins/npm
+    zgen oh-my-zsh plugins/gitfast
     zgen oh-my-zsh plugins/git-extras
-    zgen oh-my-zsh plugins/github
-    zgen oh-my-zsh plugins/git-flow
+    zgen oh-my-zsh plugins/git-remote-branch
     zgen oh-my-zsh plugins/mvn
     zgen oh-my-zsh plugins/brew
     zgen oh-my-zsh plugins/osx
-    zgen oh-my-zsh plugins/nvm
     zgen oh-my-zsh plugins/scala
     zgen oh-my-zsh plugins/docker
     zgen oh-my-zsh plugins/sbt
@@ -44,6 +44,7 @@ zle-line-init() {
 }
 zle -N zle-line-init
 bindkey '^R' autosuggest-execute-suggestion
+autoload -U compinit && compinit
 
 source $(brew --prefix nvm)/nvm.sh
 
