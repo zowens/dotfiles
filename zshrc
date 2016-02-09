@@ -32,17 +32,13 @@ if ! zgen saved; then
     zgen load jimmijj/zsh-syntax-highlighting
 
     # autosuggestions should be loaded last
-    zgen load tarruda/zsh-autosuggestions
+    zgen load tarruda/zsh-autosuggestions dist/autosuggestions.zsh
 
     # save all to init script
     zgen save
 fi
 
-## Enable autosuggestions automatically.
-zle-line-init() {
-    zle autosuggest-start
-}
-zle -N zle-line-init
+autosuggest_start
 bindkey '^R' autosuggest-execute-suggestion
 autoload -U compinit && compinit
 
