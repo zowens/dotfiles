@@ -24,6 +24,9 @@ cia = commit --amend
 prune = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs git branch -d; }; f"
 fu = reset --hard
 
+# fr will prefer "upstream" remote over "origin"
+fr = "!f() { remote=$(git remote -v | awk '{print $1}' | sort -r | head -n 1) ; git fetch $remote master && git rebase $remote/master; }; f"
+
 [color]
 ui = true
 

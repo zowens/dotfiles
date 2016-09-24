@@ -38,18 +38,19 @@ Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'rking/ag.vim'
 Plugin 'chrisbra/unicode.vim'
 Plugin 'oplatek/Conque-Shell'
+Plugin 'tpope/vim-fugitive'
 
 " Obscure Syntax
 Plugin 'elubow/cql-vim'
 Plugin 'avakhov/vim-yaml'
 Plugin 'solarnz/thrift.vim'
+Plugin 'hashivim/vim-terraform'
+Plugin 'cstrahan/vim-capnp'
 
 " Go
-Plugin 'fatih/vim-go'
 
 " Rust
 Plugin 'rust-lang/rust.vim'
-Plugin 'racer-rust/vim-racer'
 
 " Scala/Java
 Plugin 'derekwyatt/vim-scala'

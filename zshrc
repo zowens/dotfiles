@@ -46,10 +46,7 @@ zle -N zle-line-init
 bindkey '^R' autosuggest-execute-suggestion
 autoload -U compinit && compinit
 
-source $(brew --prefix nvm)/nvm.sh
-
 export GOPATH=$HOME
-export GOROOT=/usr/local/Cellar/go/`ls /usr/local/Cellar/go/ | head -n 1`/libexec
 export PATH=$HOME/Library/Haskell/bin:$HOME/.local/bin:/usr/local/bin:$PATH:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.cabal/bin:$GOPATH/bin:$HOME/bin:$HOME/Dropbox/bin
 export EDITOR=vim
 export RUST_SRC_PATH="/Users/$USER/src/github.com/rust-lang/rust/src"
@@ -87,12 +84,11 @@ function update() {
     brew update && brew upgrade --all && brew cleanup
     echo "$BACKGROUND_RED        ZGEN        $RESET_FORMATTING" && 
     zgen update
-    echo "$BACKGROUND_RED        CABAL       $RESET_FORMATTING" && 
-    ((which cabal && cabal update && cabal install cabal-install) || true) &&
-    ((which aws && echo "$BACKGROUND_RED       AWS-CLI      $RESET_FORMATTING" && sudo pip3 install awscli --upgrade) || true) &&
+    ((which aws && echo "$BACKGROUND_RED       AWS-CLI      $RESET_FORMATTING" && sudo pip install awscli --upgrade) || true) &&
     echo "$BACKGROUND_RED        VIM         $RESET_FORMATTING" && 
     (vim -c ":PluginUpdate" -c ":q" -c ":q") &&
-    (which rustup && echo "$BACKGROUND_RED        RUST        $RESET_FORMATTING" && rustup)
+    (which rustup && echo "$BACKGROUND_RED        RUST        $RESET_FORMATTING" && rustup) &&
+    (cd $HOME/.vim/bundle/YouCompleteMe && git submodule update --init --force --recursive && ./install.py --racer-completer)
 
 }
 alias brewup='update'
@@ -111,3 +107,8 @@ eval `/usr/libexec/path_helper -s`
 if [ -f $HOME/.this_zshrc ] ; then
     source $HOME/.this_zshrc
 fi
+
+# NODE VERSION MANAGER
+# https://github.com/creationix/nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
