@@ -24,7 +24,7 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'vim-scripts/YankRing.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -48,18 +48,24 @@ Plugin 'hashivim/vim-terraform'
 Plugin 'cstrahan/vim-capnp'
 
 " Go
+Plugin 'fatih/vim-go'
 
 " Rust
 Plugin 'rust-lang/rust.vim'
 
 " Scala/Java
 Plugin 'derekwyatt/vim-scala'
-Plugin 'zowens/vim-eclim'
+" Plugin 'ensime/ensime-vim'
 
 " Snippets
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
+Plugin 'andrewstuart/vim-kubernetes'
+
+" Javascript
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
 
 " Haskell
 Plugin 'eagletmt/ghcmod-vim'
@@ -135,7 +141,7 @@ endif
 " ---------------------------------------
 " Filetypes
 " ---------------------------------------
-let NERDTreeIgnore=['\.pyc$', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', 'node_modules', 'dist', 'target', 'build/', 'bin', '\.map$','.js\.map$','\.class$','\.racertmp$']
+let NERDTreeIgnore=['\.pyc$', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', 'node_modules', 'dist', 'target', 'build/', '\.map$','.js\.map$','\.class$','\.racertmp$']
 set wildignore=*.o,*~,*.hi,*.zip,*.so,*.class,*.racertmp
 
 " turn off backup files
@@ -161,6 +167,7 @@ autocmd FileReadPost * :set number
 
 set foldmethod=syntax
 set foldenable
+set conceallevel=1
 
 set completeopt=menu,menuone,longest " complete options (disable preview scratch window)
 
@@ -187,7 +194,7 @@ let g:SuperTabDefaultCompletionType = "context"
 " ctrl-p
 let g:ctrlp_map = '<c-t>'
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]((\.(git|hg|svn))|build|node_modules|dist|target|bin)$',
+  \ 'dir':  '\v[\/]((\.(git|hg|svn))|build|node_modules|dist|target)$',
   \ 'file': '\v\.(exe|so|dll|class|xml)$',
   \ }
 let g:ctrlp_working_path_mode = 0
@@ -257,22 +264,16 @@ let g:UltiSnipsExpandTrigger="<c-z>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-" java
-au FileType java map <silent> <leader>ji :JavaImportOrganize<cr>
-au FileType java map <silent> <leader>jm :JavaImpl<cr>
-au FileType java map <silent> <leader>js :JavaSearch<cr>
-au FileType java map <silent> <leader>jd :JavaDocSearch<cr>
-au FileType java map <silent> <leader>jc :JavaDocComment<cr>
-au FileType java map <silent> <leader>jk :JavaCorrect<cr>
-au FileType java map <silent> <leader>ju :JavaDelegate<cr>
-au FileType java map <silent> <leader>jg :JavaGetSet<cr>
-"autocmd FileType java setlocal omnifunc=eclim#complete
-let g:EclimBrowser = 'open'
-let g:EclimCompletionMethod = 'omnifunc'
-
 " scala
-au FileType scala map <silent> <leader>ji :ScalaImport<cr>
-au FileType scala map <silent> <leader>js :ScalaSearch<cr>
+au FileType scala map <silent> <leader>ji :EnSuggestImport<cr>
+au FileType scala map <silent> <leader>jo :EnOrganizeImports<cr>
+au FileType scala map <silent> <leader>jf :EnFormatSource<cr>
+au FileType scala map <silent> <leader>jt :EnType<cr>
+
+autocmd BufWritePost *.scala silent :EnTypeCheck
+au FileType scala nnoremap <localleader>js :EnDeclarationSplit<CR>
+au FileType scala setlocal omnifunc=ensime#fun_en_complete_func
+
 
 autocmd FileType java :set fmr=/**,*/ fdm=marker fdc=1
 autocmd FileType javascript :set fmr=/*,*/ fdm=marker fdc=1
@@ -293,6 +294,12 @@ au FileType go nmap <Leader>ds <Plug>(go-def-split)
 au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
 au FileType go nmap <Leader>s <Plug>(go-implements)
 let g:go_fmt_fail_silently = 1
+let g:go_def_mapping_enabled = 0
+let g:go_fmt_command = "goimports"
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
 
 " haskell
 au FileType haskell map <leader>gt :GhcModType<cr>
@@ -309,20 +316,26 @@ let g:haskell_conceal_enumerations = 1
 let hscoptions="𝐒𝐓𝐄𝐌xRtB𝔻w"
 
 " rust
-if $USER == 'zowens'
-    let $RUST_SRC_PATH="/Users/zowens/src/github.com/rust-lang/rust/src/"
-    let g:ycm_rust_src_path = '/Users/zowens/src/github.com/rust-lang/rust/src/'
-    let g:racer_cmd = "/Users/zowens/bin/racer"
-else
-    let $RUST_SRC_PATH="/Users/zack/src/github.com/rust-lang/rust/src/"
-    let g:ycm_rust_src_path = '/Users/zack/src/github.com/rust-lang/rust/src/'
-    let g:racer_cmd = "/Users/zack/bin/racer"
-endif
-
-let g:racer_experimental_completer = 1
+" if $USER == 'zowens'
+"     let $RUST_SRC_PATH="/Users/zowens/src/github.com/rust-lang/rust/src/"
+"     let g:ycm_rust_src_path = '/Users/zowens/src/github.com/rust-lang/rust/src/'
+"     let g:racer_cmd = "/Users/zowens/bin/racer"
+" else
+"     let $RUST_SRC_PATH="/Users/zack/src/github.com/rust-lang/rust/src/"
+"     let g:ycm_rust_src_path = '/Users/zack/src/github.com/rust-lang/rust/src/'
+"     let g:racer_cmd = "/Users/zack/bin/racer"
+" endif
+" 
+" let g:racer_experimental_completer = 1
 
 " CQL
 autocmd BufRead *.cql set syntax=cql
+
+" Javascript
+let g:javascript_plugin_jsdoc = 1
+let g:javascript_conceal_arrow_function = "⇒"
+let g:jsx_ext_required = 0
+
 
 " markdown
 " Add support for markdown files in tagbar.
