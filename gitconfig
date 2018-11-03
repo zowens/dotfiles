@@ -53,5 +53,12 @@ autosetuprebase = always
 [merge]
 tool = gvimdiff
 
+[diff]
+tool = gvimdiff
+
+
 [help]
 autocorrect = 1
+[credential "https://git-codecommit.*.amazonaws.com"]
+    helper = !aws codecommit credential-helper $@ 
+    UseHttpPath = true
