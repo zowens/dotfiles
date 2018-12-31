@@ -75,6 +75,11 @@ Plugin 'eagletmt/neco-ghc'
 Plugin 'Twinside/vim-hoogle'
 Plugin 'mpickering/hlint-refactor-vim'
 
+" Code Formatting (vim-codefmt)
+Plugin 'google/vim-maktaba'
+Plugin 'google/vim-codefmt'
+Plugin 'google/vim-glaive'
+
 call vundle#end()
 
 filetype plugin indent on
@@ -137,6 +142,20 @@ set softtabstop=4
 if has("autocmd")
   filetype plugin indent on
 endif
+
+" --------------------------------------
+"  Code Formatting
+"
+call glaive#Install()
+Glaive codefmt plugin[mappings]
+augroup autoformat_settings
+  autocmd FileType c,cpp,proto,javascript AutoFormatBuffer clang-format
+  " autocmd FileType go AutoFormatBuffer gofmt
+  " autocmd FileType html,css,json AutoFormatBuffer js-beautify
+  " autocmd FileType java AutoFormatBuffer google-java-format
+  " autocmd FileType python AutoFormatBuffer yapf
+augroup END
+Glaive codefmt google_java_executable="/usr/local/bin/google-java-format -a"
 
 " ---------------------------------------
 " Filetypes
@@ -274,6 +293,9 @@ autocmd BufWritePost *.scala silent :EnTypeCheck
 au FileType scala nnoremap <localleader>js :EnDeclarationSplit<CR>
 au FileType scala setlocal omnifunc=ensime#fun_en_complete_func
 
+" java
+let g:syntastic_java_checkers = []
+
 
 autocmd FileType java :set fmr=/**,*/ fdm=marker fdc=1
 autocmd FileType javascript :set fmr=/*,*/ fdm=marker fdc=1
@@ -314,19 +336,6 @@ autocmd FileType haskell :setlocal omnifunc=necoghc#omnifunc
 let g:haskell_conceal_wide = 1
 let g:haskell_conceal_enumerations = 1
 let hscoptions="𝐒𝐓𝐄𝐌xRtB𝔻w"
-
-" rust
-" if $USER == 'zowens'
-"     let $RUST_SRC_PATH="/Users/zowens/src/github.com/rust-lang/rust/src/"
-"     let g:ycm_rust_src_path = '/Users/zowens/src/github.com/rust-lang/rust/src/'
-"     let g:racer_cmd = "/Users/zowens/bin/racer"
-" else
-"     let $RUST_SRC_PATH="/Users/zack/src/github.com/rust-lang/rust/src/"
-"     let g:ycm_rust_src_path = '/Users/zack/src/github.com/rust-lang/rust/src/'
-"     let g:racer_cmd = "/Users/zack/bin/racer"
-" endif
-" 
-" let g:racer_experimental_completer = 1
 
 " CQL
 autocmd BufRead *.cql set syntax=cql
