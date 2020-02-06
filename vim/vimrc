@@ -29,7 +29,7 @@ Plugin 'scrooloose/syntastic'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'EinfachToll/DidYouMean'
-Plugin 'Valloric/YouCompleteMe'
+Plugin 'ycm-core/YouCompleteMe'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'Shougo/vimproc'
@@ -53,9 +53,9 @@ Plugin 'fatih/vim-go'
 " Rust
 Plugin 'rust-lang/rust.vim'
 
-" Scala/Java
+" Scala/Java/kotlin
 Plugin 'derekwyatt/vim-scala'
-" Plugin 'ensime/ensime-vim'
+Plugin 'udalov/kotlin-vim'
 
 " Snippets
 Plugin 'SirVer/ultisnips'
@@ -205,6 +205,7 @@ set showmatch
 set noerrorbells
 set novisualbell
 set t_vb=
+autocmd GUIEnter * set visualbell t_vb=
 set tm=1000 " timeout to 1 second
 
 " supertab
@@ -275,6 +276,15 @@ let g:ycm_semantic_triggers = {
   \ 'rust': ['.','::'],
   \ }
 
+let g:ycm_language_server = [
+  \   { 'name': 'kotlin',
+  \     'filetypes': [ 'kotlin' ],
+  \     'cmdline': [ expand( '$HOME/src/github.com/fwcd/kotlin-language-server/server/build/install/server/bin/kotlin-language-server' ) ],
+  \   }
+  \ ]
+let g:ycm_confirm_extra_conf=0
+
+
 " Strip whitespace on save
 autocmd FileType java,scala,groovy,javascript,c,cpp,rust,go,haskell,scheme,cql,json autocmd BufWritePre <buffer> StripWhitespace
 
@@ -295,6 +305,9 @@ au FileType scala setlocal omnifunc=ensime#fun_en_complete_func
 
 " java
 let g:syntastic_java_checkers = []
+au FileType java map <silent> <leader>ji :YcmCompleter FixIt<cr>
+au FileType java map <silent> <leader>jg :YcmCompleter GoTo<cr>
+au FileType java map <silent> <leader>jf :YcmCompleter Format<cr>
 
 
 autocmd FileType java :set fmr=/**,*/ fdm=marker fdc=1
@@ -322,6 +335,7 @@ let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
+let g:go_code_completion_enabled = 0
 
 " haskell
 au FileType haskell map <leader>gt :GhcModType<cr>
