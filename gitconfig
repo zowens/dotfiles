@@ -13,18 +13,19 @@ a = add
 ap = add -p
 aa = add .
 s = status -sb
-p = push
+p = !git push origin $(git rev-parse --abbrev-ref HEAD)
+pf = !git push -f origin $(git rev-parse --abbrev-ref HEAD)
+f = !git fetch origin $(git rev-parse --abbrev-ref HEAD)
+frb = "!f() { branch=$(git rev-parse --abbrev-ref HEAD) ; git fetch origin $branch && git rebase origin/$branch; }; f"
 pl = pull --prune
 plom = pull origin master
 co = checkout
 d = diff
 graph  = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(cyan)<%an>%Creset' --abbrev-commit --date=relative
-cim = commit -m 
+cim = commit -m
 cia = commit --amend
 prune = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs git branch -d; }; f"
 fu = reset --hard
-
-# fr will prefer "upstream" remote over "origin"
 fr = "!f() { remote=$(git remote -v | awk '{print $1}' | sort -r | head -n 1) ; git fetch $remote master && git rebase $remote/master; }; f"
 
 [color]
@@ -35,6 +36,7 @@ default = matching
 
 [core]
 editor = vim
+	excludesfile = /Users/zowens/.gitignore_global
 
 [format]
 graph = true
